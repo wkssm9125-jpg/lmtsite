@@ -53,16 +53,16 @@ export default function InquiryModal({ open, onClose, model }: Props) {
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-50">
                   <Check size={32} className="text-green-600" />
                 </div>
-                <h3 className="m-0 mt-5 text-[1.3rem] font-semibold text-[#1d1d1f]">Inquiry Sent</h3>
+                <h3 className="m-0 mt-5 text-[1.3rem] font-semibold text-[#1d1d1f]">문의가 접수되었습니다</h3>
                 <p className="mt-2 text-[0.92rem] text-[#6e6e73]">
-                  Thank you for your interest in the {model}. Our B2B sales team will contact you within 2 business days.
+                  {model}에 관심 가져주셔서 감사합니다. 담당자가 영업일 기준 2일 이내에 연락드리겠습니다.
                 </p>
                 <button
                   type="button"
                   onClick={handleClose}
                   className="mt-6 cursor-pointer rounded-full bg-[#0071e3] px-6 py-2.5 text-[0.92rem] font-medium text-white border-none transition-colors hover:bg-[#0077ed]"
                 >
-                  Done
+                  확인
                 </button>
               </div>
             ) : (
@@ -70,7 +70,7 @@ export default function InquiryModal({ open, onClose, model }: Props) {
                 <div className="mb-6 flex items-start justify-between">
                   <div>
                     <h3 className="m-0 text-[1.3rem] font-semibold tracking-[-0.01em] text-[#1d1d1f]">
-                      Inquire About Model
+                      제품 문의하기
                     </h3>
                     <p className="mt-1 text-[0.88rem] text-[#6e6e73]">{model}</p>
                   </div>
@@ -85,13 +85,13 @@ export default function InquiryModal({ open, onClose, model }: Props) {
                 <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                   <div className="grid grid-cols-2 gap-3">
                     <Input
-                      label="Company"
+                      label="회사명"
                       value={form.company}
                       onChange={(v) => setForm({ ...form, company: v })}
                       required
                     />
                     <Input
-                      label="Contact Name"
+                      label="담당자명"
                       value={form.name}
                       onChange={(v) => setForm({ ...form, name: v })}
                       required
@@ -99,32 +99,32 @@ export default function InquiryModal({ open, onClose, model }: Props) {
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <Input
-                      label="Email"
+                      label="이메일"
                       type="email"
                       value={form.email}
                       onChange={(v) => setForm({ ...form, email: v })}
                       required
                     />
                     <Input
-                      label="Phone"
+                      label="연락처"
                       value={form.phone}
                       onChange={(v) => setForm({ ...form, phone: v })}
                     />
                   </div>
                   <Input
-                    label="Estimated Quantity"
+                    label="예상 수량"
                     value={form.quantity}
                     onChange={(v) => setForm({ ...form, quantity: v })}
-                    placeholder="e.g. 100 units"
+                    placeholder="예: 100개"
                   />
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[0.82rem] font-medium text-[#1d1d1f]">Message</label>
+                    <label className="text-[0.82rem] font-medium text-[#1d1d1f]">문의 내용</label>
                     <textarea
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                       rows={3}
                       className="resize-none rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-[0.9rem] text-[#1d1d1f] outline-none transition-colors placeholder:text-gray-400 focus:border-[#0071e3]"
-                      placeholder="Application, enclosure type, timeline..."
+                      placeholder="설치 공간, 용도, 희망 일정 등을 알려주세요"
                     />
                   </div>
                   <button
@@ -132,7 +132,7 @@ export default function InquiryModal({ open, onClose, model }: Props) {
                     className="mt-2 flex cursor-pointer items-center justify-center gap-2 rounded-full bg-[#0071e3] py-3 text-[0.95rem] font-medium text-white border-none transition-colors hover:bg-[#0077ed] active:scale-[0.98]"
                   >
                     <Send size={16} />
-                    Send Inquiry
+                    문의 보내기
                   </button>
                 </form>
               </>

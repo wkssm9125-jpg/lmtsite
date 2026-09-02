@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Search, X, Globe, ChevronDown } from "lucide-react";
+import { subcategories } from "@/data/products";
 
 type NavDropdown = {
   label: string;
@@ -9,21 +10,20 @@ type NavDropdown = {
 
 const navDropdowns: NavDropdown[] = [
   {
-    label: "Products",
-    items: [
-      { name: "Sound Reinforcement", path: "/product/professional-loud-speaker?sub=Sound%20Reinforcement" },
-      { name: "Subwoofers", path: "/product/professional-loud-speaker?sub=Subwoofers" },
-      { name: "Coaxial", path: "/product/professional-loud-speaker?sub=Coaxial" },
-      { name: "High-Frequency Drivers", path: "/product/professional-loud-speaker?sub=High-Frequency%20Drivers" },
-    ],
+    label: "제품소개",
+    items: subcategories.map((sub) => ({
+      name: sub.label,
+      path: `/product/professional-loud-speaker?sub=${encodeURIComponent(sub.key)}`,
+    })),
   },
 ];
 
+/* 아래 페이지는 아직 준비되지 않았습니다 — 클릭하면 홈으로 이동합니다 */
 const simpleLinks = [
-  { label: "Technology", path: "/technology" },
-  { label: "About", path: "/about" },
-  { label: "Downloads", path: "/downloads" },
-  { label: "Contact", path: "/contact" },
+  { label: "회사소개", path: "/about" },
+  { label: "적용사례", path: "/cases" },
+  { label: "고객센터", path: "/support" },
+  { label: "스토어", path: "/store" },
 ];
 
 export default function GlobalNav() {
@@ -55,7 +55,7 @@ export default function GlobalNav() {
         <nav className="mx-auto flex max-w-[1200px] items-center justify-between px-6 py-3">
           <Link to="/" className="flex items-center gap-2 text-[#1d1d1f] no-underline">
             <AudioLogo />
-            <span className="text-[1.05rem] font-semibold tracking-[-0.02em]">Sammisound</span>
+            <span className="text-[1.05rem] font-semibold tracking-[-0.02em]">르미디어텍</span>
           </Link>
 
           <ul className="hidden items-center gap-1 md:flex">
@@ -149,7 +149,7 @@ export default function GlobalNav() {
               <input
                 type="text"
                 autoFocus
-                placeholder="Search products, models, specs..."
+                placeholder="제품, 모델명, 사양 검색..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="flex-1 border-none bg-transparent text-[1rem] text-[#1d1d1f] outline-none placeholder:text-gray-400"
@@ -164,13 +164,13 @@ export default function GlobalNav() {
             </div>
             {searchQuery && (
               <div className="mt-3">
-                <p className="mb-2 text-[0.75rem] font-medium text-gray-400">Suggested</p>
+                <p className="mb-2 text-[0.75rem] font-medium text-gray-400">추천 검색</p>
                 <Link
                   to={`/product/professional-loud-speaker?q=${encodeURIComponent(searchQuery)}`}
                   onClick={() => setSearchOpen(false)}
                   className="block rounded-lg px-3 py-2 text-[0.88rem] text-[#1d1d1f] no-underline transition-colors hover:bg-gray-100"
                 >
-                  Search for "{searchQuery}" in Professional Loudspeakers
+                  제품소개에서 "{searchQuery}" 검색
                 </Link>
               </div>
             )}
